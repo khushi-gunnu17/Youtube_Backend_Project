@@ -225,8 +225,8 @@ const logoutUser = asyncHandler( async (req, res) => {
     await User.findByIdAndUpdate(
         req.user._id,
         {
-            $set : {
-                refreshToken : undefined
+            $unset : {
+                refreshToken : 1    // this removes the field from document
             }
         },
         {   
@@ -293,8 +293,8 @@ const refreshAccessToken = asyncHandler( async (req, res) => {
     
         return res
         .status(200)
-        .cookies("accessToken", accessToken, options)
-        .cookies("refreshToken", newRefreshToken, options)
+        .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", newRefreshToken, options)
         .json(
             new ApiResponse(
                 200, 
