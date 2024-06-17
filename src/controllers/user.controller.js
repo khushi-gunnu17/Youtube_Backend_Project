@@ -539,7 +539,7 @@ const getUserChannelProfile = asyncHandler( async (req, res) => {
     }
 
     // arrays are returned after writing aggregation pipelines
-    const channel = User.aggregate([
+    const channel = await User.aggregate([
 
         {
             $match : {
