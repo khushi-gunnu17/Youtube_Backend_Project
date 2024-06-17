@@ -47,6 +47,7 @@ const videoSchema = new Schema({
 }, {timestamps : true})
 
 
+// gives you the ability to control how much videos have to be shown, from where the video has to be given or shown
 videoSchema.plugin(mongooseAggregatePaginate)
 
 export const Video = mongoose.model("Video", videoSchema)
